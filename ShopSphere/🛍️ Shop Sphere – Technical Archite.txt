@@ -1,0 +1,142 @@
+🛍️ Shop Sphere – Technical Architecture Document
+1. Overview
+
+Shop Sphere is a MERN stack (MongoDB, Express.js, React.js, Node.js) based e-commerce website that allows users to explore products, view detailed information, add items to a shopping cart, and manage checkout operations.
+The goal is to build a clean, responsive, and efficient application that supports real-time interactions and seamless data flow between frontend and backend systems.
+
+2. Objectives
+
+Create a responsive UI for product browsing and cart management.
+
+Implement a secure backend API for handling product, user, and cart operations.
+
+Maintain data consistency with MongoDB Atlas.
+
+Provide smooth navigation using React Router and state management using Context API or Redux.
+
+3. System Architecture
+🧩 Architecture Type:
+
+Three-tier Architecture (Client → Server → Database)
+
+Frontend (Client Layer)
+
+Technology: React.js / Next.js
+
+Responsibilities:
+
+Display product listings, details, and cart contents.
+
+Handle routing using React Router.
+
+Manage application state (cart, user session) using Context API / Redux.
+
+Send REST API requests to backend via Axios or Fetch.
+
+Backend (Application Layer)
+
+Technology: Node.js with Express.js
+
+Responsibilities:
+
+Expose RESTful API endpoints.
+
+Handle CRUD operations for products, users, and cart.
+
+Communicate with MongoDB Atlas.
+
+Manage authentication, validation, and routing.
+
+Database (Data Layer)
+
+Technology: MongoDB Atlas (cloud-hosted database)
+
+Responsibilities:
+
+Store user information, product data, and cart details.
+
+Maintain collections like:
+
+users
+
+products
+
+cart
+
+orders
+
+4. High-Level Workflow Diagram
++------------------------+
+|      React.js UI       |
+| (Product List, Cart UI)|
++----------+-------------+
+           |
+           | (HTTP Requests via Axios)
+           v
++------------------------+
+|  Express.js Backend    |
+|  (API Routes & Logic)  |
++----------+-------------+
+           |
+           | (Mongoose ORM)
+           v
++------------------------+
+|     MongoDB Atlas      |
+| (Products, Users, Cart)|
++------------------------+
+
+5. Modules and Components
+Module	Description	Key Technologies
+Product Module	Displays product list and details.	React.js, Express.js, MongoDB
+Cart Module	Manages add/remove/view cart items.	React Context / Redux
+User Module	Handles registration, login, authentication.	JWT, bcrypt, Express.js
+Order Module	Simulates checkout and order confirmation.	Node.js, MongoDB
+6. API Endpoints
+Method	Endpoint	Description
+GET	/api/products	Fetch all products
+GET	/api/products/:id	Get details of a product
+POST	/api/cart	Add product to cart
+GET	/api/cart	View user cart
+DELETE	/api/cart/:id	Remove product from cart
+7. State Management
+
+Option 1: React Context API for lightweight state sharing.
+
+Option 2: Redux Toolkit for structured global state.
+
+Stored States:
+
+Cart items
+
+Product details
+
+Authentication token
+
+8. Security and Deployment
+
+Security: JWT authentication, password hashing (bcrypt).
+
+Deployment:
+
+Frontend: Vercel / Netlify
+
+Backend: Render / Railway
+
+Database: MongoDB Atlas
+
+9. Tools & Dependencies
+Category	Libraries/Tools
+Frontend	React.js, React Router, Axios, Redux/Context
+Backend	Node.js, Express.js, Mongoose, JWT
+Database	MongoDB Atlas
+Deployment	Render, Netlify
+Version Control	GitHub
+10. Future Enhancements
+
+Payment gateway integration (Razorpay/Stripe).
+
+User review and rating system.
+
+Admin dashboard for managing products and orders.
+
+Email notifications for order confirmation.
